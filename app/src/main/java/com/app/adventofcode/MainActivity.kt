@@ -4,6 +4,9 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.app.adventofcode.model.AdventCode
+import com.app.adventofcode.yearTwenty.AdapterArray
+import com.app.adventofcode.yearTwenty.EncodingError
+import com.app.adventofcode.yearTwenty.HandyHaversacksDaySeven
 import java.io.BufferedReader
 import java.io.InputStreamReader
 
@@ -19,7 +22,10 @@ class MainActivity : AppCompatActivity() {
         listItemSentence= ArrayList()
         listItemMultiList= ArrayList()
         listItemAdventCode= ArrayList()
-        listItem=getAssetsFile("")
+        listItem=getAssetsFile("AdapterArray.txt")
+
+        val encodingError= AdapterArray(listItem)
+        encodingError.partOne()
 
     }
 

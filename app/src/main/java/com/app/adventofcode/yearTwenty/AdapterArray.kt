@@ -1,16 +1,14 @@
 package com.app.adventofcode.yearTwenty
 
 import android.util.Log
-import java.util.*
-import kotlin.collections.ArrayList
 
 class AdapterArray(private var listItem: ArrayList<String>) {
 private val TAG="AdapterArray"
 
-    private val listAdapter: ArrayList<Long> = ArrayList()
+    private val listAdapter: ArrayList<Int> = ArrayList()
     init {
         for(item in listItem){
-            listAdapter.add(item.toLong())
+            listAdapter.add(item.toInt())
         }
     }
 
@@ -20,48 +18,28 @@ private val TAG="AdapterArray"
         listAdapter.sort()
         for (item in 1 until listAdapter.size){
             Log.d(TAG, "partOne: "+(listAdapter[item-1]-listAdapter[item]))
-            if(listAdapter[item]-listAdapter[item-1]==(1).toLong())
+            if(listAdapter[item]-listAdapter[item-1]==1)
                 diff1++
-            if(listAdapter[item]-listAdapter[item-1]==(3).toLong())
+            if(listAdapter[item]-listAdapter[item-1]==3)
                 diff3++
         }
         Log.d(TAG, "partOne: diff : "+(diff1*diff3))
 
     }
-    fun getAdapters(){
-        var diff1=1
-        val itemList=ArrayList<ArrayList<Long>>()
-        //itemList.add(setValue.toList() as ArrayList<Long>)
-        var item=0
-        while (item<itemList.size){
-            for(data in 2 until itemList[item].size){
-                val values=ArrayList<Long>(itemList[item])
-                when {
-                    (itemList[item][data]-itemList[item][data-2])==(1).toLong() -> {
-                        values.remove(itemList[item][data-1])
-                        itemList.add(values)
-                    }
-                    (itemList[item][data]-itemList[item][data-2])==(2).toLong() -> {
-                        values.remove(itemList[item][data-1])
-                        itemList.add(values)
-                    }
-                    (itemList[item][data]-itemList[item][data-2])==(3).toLong() -> {
-                        values.remove(itemList[item][data-1])
-                        itemList.add(values)
-                    }
-                }
-            }
 
-            val currentList=itemList.distinct()
-            itemList.clear()
-            itemList.addAll(currentList)
-            item++;
+
+    fun partTwo(): Long {
+        listAdapter.sort()
+        val adapterMap: MutableMap<Int,Long> = mutableMapOf(0 to 1L)
+
+        listAdapter.forEach {adapter ->
+            adapterMap[adapter] = (1 .. 3).map { jolts -> adapterMap.getOrDefault(adapter-jolts,0) }.sum()
+            Log.d(TAG, "partTwo1: $adapter $adapterMap")
         }
-        Log.d(TAG, "getAdapters: ${itemList.size}")
-        val treeSet= TreeSet<String>()
-        for (item in itemList){
-            treeSet.add(item.toString())
-        }
-        Log.d(TAG, "getAdapters: ${treeSet.size}")
+
+        Log.d(TAG, "partTwo: ${adapterMap.getValue(listAdapter.last())}")
+
+        return adapterMap.getValue(listAdapter.last())
     }
+
 }

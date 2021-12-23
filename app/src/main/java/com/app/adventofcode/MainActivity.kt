@@ -4,9 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import com.app.adventofcode.model.AdventCode
-import com.app.adventofcode.yearTwenty.AdapterArray
-import com.app.adventofcode.yearTwenty.EncodingError
-import com.app.adventofcode.yearTwenty.HandyHaversacksDaySeven
+import com.app.adventofcode.yearTwenty.*
 import java.io.BufferedReader
 import java.io.InputStreamReader
 
@@ -22,11 +20,17 @@ class MainActivity : AppCompatActivity() {
         listItemSentence= ArrayList()
         listItemMultiList= ArrayList()
         listItemAdventCode= ArrayList()
-        listItem=getAssetsFile("AdapterArray.txt")
+        listItem=getAssetsFile("OperationOrder.txt")
 
-        val encodingError= AdapterArray(listItem)
-        encodingError.partOne()
+/*val rainRisk=RainRisk(listItem)
+        Log.d(TAG, "onCreate: "+rainRisk.partTwo())*/
 
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val encodingError= OperationOrder(listItem)
+        Log.d(TAG, "onCreate: "+encodingError.partOne())
     }
 
     fun getAssetsFile(fileName: String) : ArrayList<String> {
@@ -67,7 +71,7 @@ class MainActivity : AppCompatActivity() {
         }
         if(sente.isNotEmpty())
             listItemSentence.add(sente)
-        Log.d(TAG, "getValues: para $count")
+
         return arrList
     }
 }

@@ -2,9 +2,13 @@ package com.app.adventofcode
 
 import android.os.Bundle
 import android.util.Log
+import android.widget.AbsListView
+import android.widget.ArrayAdapter
+import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
 import com.app.adventofcode.model.AdventCode
 import com.app.adventofcode.yearTwenty.*
+import com.app.adventofcode.yearNineTeen.*
 import java.io.BufferedReader
 import java.io.InputStreamReader
 
@@ -14,23 +18,27 @@ class MainActivity : AppCompatActivity() {
     lateinit var listItemSentence: ArrayList<String>
     lateinit var listItemMultiList: ArrayList<ArrayList<String>>
     lateinit var listItemAdventCode : ArrayList<AdventCode>
+    lateinit var listView: ListView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         listItemSentence= ArrayList()
         listItemMultiList= ArrayList()
         listItemAdventCode= ArrayList()
-        listItem=getAssetsFile("OperationOrder.txt")
-
+        listItem=getAssetsFile("CrossedWires.txt")
+        listView=findViewById(R.id.list_item)
 /*val rainRisk=RainRisk(listItem)
         Log.d(TAG, "onCreate: "+rainRisk.partTwo())*/
+        val encodingError= CrossedWires(listItem)
+        Log.d(TAG, "onCreate: "+encodingError.partOne())
 
     }
 
     override fun onResume() {
         super.onResume()
-        val encodingError= OperationOrder(listItem)
-        Log.d(TAG, "onCreate: "+encodingError.partOne())
+
+      //  val arrayAdapter=ArrayAdapter(this,R.layout.list_view,encodingError.partTwoArray())
+       // listView.adapter=arrayAdapter
     }
 
     fun getAssetsFile(fileName: String) : ArrayList<String> {

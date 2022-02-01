@@ -5,9 +5,14 @@ import kotlin.math.abs
 
 class CrossedWires(private var listItem: ArrayList<String>) {
 private val TAG="CrossedWires"
+    var array=Array(1){CharArray(1)}
     var x=0
     var y=0
-
+    var increase=0
+    var sum=0
+    init {
+        array[0][0]='0'
+    }
 
     fun partOne(): Long {
         var smaller=Long.MAX_VALUE
@@ -23,7 +28,26 @@ private val TAG="CrossedWires"
                     smaller= result.toLong()
             }
         }
-return smaller
+        return smaller
+
+    }
+
+    fun partTwo(): Long {
+        var smaller=Long.MAX_VALUE
+        val arrayWireOne=wirePos(listItem[0].split(",").toMutableList())
+        val arrayWireTwo=wirePos(listItem[1].split(",").toMutableList())
+        for((pos, wire1) in arrayWireOne.withIndex()){
+            if(arrayWireTwo.contains(wire1)) {
+                Log.d(TAG, "partTwo: ${pos+1} ${arrayWireTwo.indexOf(wire1)+1}")
+                Log.d(TAG, "partTwo: total ${pos+arrayWireTwo.indexOf(wire1)+2}")
+                val result=pos+arrayWireTwo.indexOf(wire1)+2
+                if(result<smaller) {
+                    smaller = result.toLong()
+                    Log.d(TAG, "partTwo: smaller $smaller")
+                }
+            }
+        }
+        return smaller
 
     }
 
@@ -66,4 +90,6 @@ return smaller
         }
         return arrayWireList
     }
+
+
 }

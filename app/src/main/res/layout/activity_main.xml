@@ -1,15 +1,132 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".MainActivity">
-
-  <ListView
-      app:layout_constraintTop_toTopOf="parent"
-      android:id="@+id/list_item"
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+  <androidx.constraintlayout.widget.ConstraintLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+      xmlns:tools="http://schemas.android.com/tools"
       android:layout_width="match_parent"
-      android:layout_height="wrap_content"/>
+      android:layout_height="match_parent"
+      tools:context=".MainActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    <LinearLayout
+        android:id="@+id/viewLay"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_margin="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+     <!-- <EditText
+          android:id="@+id/day"
+          android:layout_width="150dp"
+          android:textSize="16sp"
+          android:textColor="@color/black"
+          android:layout_height="wrap_content"
+          android:gravity="center"
+          android:hint="@string/enter_day"
+          android:inputType="number"
+          android:maxLength="2"
+          android:padding="15dp"
+          android:importantForAutofill="no" />
+
+      <EditText
+          android:id="@+id/year"
+          android:layout_width="150dp"
+          android:layout_height="wrap_content"
+          android:layout_marginStart="30dp"
+          android:gravity="center"
+          android:textSize="16sp"
+          android:textColor="@color/black"
+          android:hint="@string/enter_year"
+          android:inputType="number"
+          android:maxLength="4"
+          android:padding="15dp"
+          android:importantForAutofill="no" />-->
+      <Spinner
+          android:id="@+id/day"
+          android:padding="20dp"
+          android:layout_weight="1"
+          android:layout_width="0dp"
+          android:layout_marginEnd="10dp"
+          android:layout_height="wrap_content"/>
+
+      <Spinner
+          android:id="@+id/year"
+          android:padding="20dp"
+          android:layout_weight="1"
+          android:layout_marginStart="10dp"
+          android:layout_width="0dp"
+          android:layout_height="wrap_content"/>
+
+
+    </LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="wrap_content"
+        android:padding="15sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="30dp"
+        android:text="@string/submit"
+        android:id="@+id/submit"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:textAllCaps="false"
+      android:layout_margin="20sp"
+        app:layout_constraintTop_toBottomOf="@id/viewLay"
+        android:layout_height="wrap_content"/>
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:id="@+id/partOneText"
+        android:textSize="16sp"
+        android:text="@string/part_one_answer"
+        android:layout_margin="20sp"
+        android:textColor="@color/black"
+        android:padding="10dp"
+        app:layout_constraintEnd_toStartOf="@id/answerPartOne"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/submit"
+        android:layout_height="wrap_content"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:id="@+id/answerPartOne"
+        android:textSize="20sp"
+        android:layout_marginStart="20sp"
+        android:padding="10dp"
+        android:textColor="@color/black"
+      android:layout_margin="20sp"
+        app:layout_constraintStart_toEndOf="@id/partOneText"
+        app:layout_constraintTop_toBottomOf="@id/submit"
+        android:layout_height="wrap_content"/>
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:id="@+id/partTwoText"
+        android:textSize="16sp"
+        android:textColor="@color/black"
+        android:padding="10dp"
+        android:text="@string/part_two_answer"
+   android:layout_margin="20sp"
+        app:layout_constraintStart_toStartOf="parent"
+       app:layout_constraintEnd_toStartOf="@id/answerPartTwo"
+        app:layout_constraintTop_toBottomOf="@id/answerPartOne"
+        android:layout_height="wrap_content"/>
+
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:layout_width="wrap_content"
+        android:id="@+id/answerPartTwo"
+        android:textSize="20sp"
+        android:textColor="@color/black"
+        app:layout_constraintStart_toEndOf="@id/partTwoText"
+     android:padding="10dp"
+        android:layout_margin="20sp"
+        app:layout_constraintTop_toBottomOf="@id/answerPartOne"
+        android:layout_height="wrap_content"/>
+
+  </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

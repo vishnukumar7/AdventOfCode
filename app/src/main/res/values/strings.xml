@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">AdventOfCode</string>
+    <string name="enter_day">Enter Day</string>
+    <string name="enter_year">Enter year</string>
+    <string name="submit">Submit</string>
+    <string name="part_one_answer">Part One Answer</string>
+    <string name="part_two_answer">Part Two Answer</string>
+    <string name="enter_vaild_day">Enter Valid Day</string>
 </resources>

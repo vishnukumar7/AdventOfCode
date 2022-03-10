@@ -11,6 +11,7 @@ import androidx.databinding.DataBindingUtil
 import com.app.adventofcode.databinding.ActivityMainBinding
 import com.app.adventofcode.year15.*
 import com.app.adventofcode.year17.Day07
+import com.app.adventofcode.year17.Day11
 import kotlin.jvm.Throws
 
 class MainActivity : AppCompatActivity() {
@@ -37,7 +38,10 @@ private val TAG="MainActivity"
         5 to lazy { com.app.adventofcode.year17.Day05(this) },
         6 to lazy { com.app.adventofcode.year17.Day06(this) },
         7 to lazy { com.app.adventofcode.year17.Day07(this) },
-        8 to lazy { com.app.adventofcode.year17.Day08(this) }
+        8 to lazy { com.app.adventofcode.year17.Day08(this) },
+        9 to lazy { com.app.adventofcode.year17.Day09(this) },
+        10 to lazy { com.app.adventofcode.year17.Day10(this) },
+        11 to lazy { Day11(this) }
     )
 
     val year19 = hashMapOf(
@@ -65,6 +69,23 @@ private val TAG="MainActivity"
         15 to lazy { com.app.adventofcode.yearTwenty.Day15(this) },
         17 to lazy { com.app.adventofcode.yearTwenty.Day17(this) },
         18 to lazy { com.app.adventofcode.yearTwenty.Day18(this) }
+    )
+
+    val year21= hashMapOf(
+        1 to lazy { com.app.adventofcode.year21.Day01(this) },
+        2 to lazy { com.app.adventofcode.year21.Day02(this) },
+        3 to lazy { com.app.adventofcode.year21.Day03(this) },
+        4 to lazy { com.app.adventofcode.year21.Day04(this) },
+        5 to lazy { com.app.adventofcode.year21.Day05(this) },
+        6 to lazy { com.app.adventofcode.year21.Day06(this) }/*,
+        7 to lazy { com.app.adventofcode.year21.Day07(this) },
+        8 to lazy { com.app.adventofcode.year21.Day08(this) },
+        9 to lazy { com.app.adventofcode.year21.Day09(this) },
+        10 to lazy { com.app.adventofcode.year21.Day10(this) },
+        11 to lazy { com.app.adventofcode.year21.Day11(this) },
+        12 to lazy { com.app.adventofcode.year21.Day12(this) },
+        13 to lazy { com.app.adventofcode.year21.Day13(this) },
+        14 to lazy { com.app.adventofcode.year21.Day14(this) }*/
     )
 
     var arrayListYear = arrayListOf(2015, 2016, 2017, 2018, 2019, 2020, 2021)
@@ -107,35 +128,12 @@ private val TAG="MainActivity"
         super.onCreate(savedInstanceState)
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main)
 
-        /*binding.submit.setOnClickListener {
-            when {
-                binding.day.text.toString().toInt() != 0 -> {
-                    Toast.makeText(
-                        this@MainActivity,
-                        getString(R.string.enter_vaild_day),
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-                binding.year.text.toString().length != 4 -> {
-                    Toast.makeText(
-                        this@MainActivity,
-                        "Enter Valid Year - (like 2021)",
-                        Toast.LENGTH_SHORT
-                    ).show()
-                }
-                else -> {
-                    call(binding.day.text.toString().toInt(), binding.year.text.toString().toInt())
-                }
-            }
-        }*/
         val arrayAdapterYear =
             ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, arrayListYear)
         val arrayAdapterDay =
             ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, arrayListDay)
         binding.day.adapter = arrayAdapterDay
         binding.year.adapter = arrayAdapterYear
-        /*binding.day.setOnItemClickListener { _, _, position, _ -> selectDay=arrayListDay[position] }
-        binding.year.setOnItemClickListener { _, _, position, _ -> selectYear=arrayListYear[position] }*/
         binding.day.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
                 parent: AdapterView<*>?,
@@ -226,6 +224,10 @@ private val TAG="MainActivity"
     }
 
     private fun callDay2021(day: Int) {
+        val dayans = year21[day]
+        binding.answerPartOne.text = dayans?.value?.partOne().toString()
+        binding.answerPartTwo.text = dayans?.value?.partTwo().toString()
+        Log.d(TAG, "callDay2021: "+binding.answerPartTwo.text)
 
     }
 

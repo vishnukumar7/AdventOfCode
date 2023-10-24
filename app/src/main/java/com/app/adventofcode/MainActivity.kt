@@ -10,119 +10,11 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.app.adventofcode.databinding.ActivityMainBinding
 import com.app.adventofcode.year15.*
-import com.app.adventofcode.year17.Day07
 import com.app.adventofcode.year17.Day11
-import kotlin.jvm.Throws
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : BaseActivity() {
 private val TAG="MainActivity"
     lateinit var binding: ActivityMainBinding
-
-    val year15 = hashMapOf(
-        1 to lazy { Day01(this) },
-        2 to lazy { Day02(this) },
-        3 to lazy { Day03(this) },
-        4 to lazy { Day04(this) },
-        5 to lazy { Day05(this) },
-        6 to lazy { Day06(this) },
-        8 to lazy { Day08(this) },
-        9 to lazy { Day09(this) },
-        10 to lazy { Day10(this) }
-    )
-
-    private val year17 = hashMapOf(
-        1 to lazy { com.app.adventofcode.year17.Day01(this) },
-        2 to lazy { com.app.adventofcode.year17.Day02(this) },
-        3 to lazy { com.app.adventofcode.year17.Day03(this) },
-        4 to lazy { com.app.adventofcode.year17.Day04(this) },
-        5 to lazy { com.app.adventofcode.year17.Day05(this) },
-        6 to lazy { com.app.adventofcode.year17.Day06(this) },
-        7 to lazy { com.app.adventofcode.year17.Day07(this) },
-        8 to lazy { com.app.adventofcode.year17.Day08(this) },
-        9 to lazy { com.app.adventofcode.year17.Day09(this) },
-        10 to lazy { com.app.adventofcode.year17.Day10(this) },
-        11 to lazy { Day11(this) }
-    )
-
-    val year19 = hashMapOf(
-        1 to lazy { com.app.adventofcode.yearNineTeen.Day01(this) },
-        2 to lazy { com.app.adventofcode.yearNineTeen.Day02(this) },
-        3 to lazy { com.app.adventofcode.yearNineTeen.Day03(this) },
-        4 to lazy { com.app.adventofcode.yearNineTeen.Day04(this) },
-        6 to lazy { com.app.adventofcode.yearNineTeen.Day06(this) }
-    )
-
-    val year20 = hashMapOf(
-        1 to lazy { com.app.adventofcode.yearTwenty.Day01(this) },
-        2 to lazy { com.app.adventofcode.yearTwenty.Day02(this) },
-        3 to lazy { com.app.adventofcode.yearTwenty.Day03(this) },
-        4 to lazy { com.app.adventofcode.yearTwenty.Day04(this) },
-        5 to lazy { com.app.adventofcode.yearTwenty.Day05(this) },
-        6 to lazy { com.app.adventofcode.yearTwenty.Day06(this) },
-        8 to lazy { com.app.adventofcode.yearTwenty.Day08(this) },
-        9 to lazy { com.app.adventofcode.yearTwenty.Day09(this) },
-        10 to lazy { com.app.adventofcode.yearTwenty.Day10(this) },
-        11 to lazy { com.app.adventofcode.yearTwenty.Day11(this) },
-        12 to lazy { com.app.adventofcode.yearTwenty.Day12(this) },
-        13 to lazy { com.app.adventofcode.yearTwenty.Day13(this) },
-        14 to lazy { com.app.adventofcode.yearTwenty.Day14(this) },
-        15 to lazy { com.app.adventofcode.yearTwenty.Day15(this) },
-        17 to lazy { com.app.adventofcode.yearTwenty.Day17(this) },
-        18 to lazy { com.app.adventofcode.yearTwenty.Day18(this) }
-    )
-
-    val year21= hashMapOf(
-        1 to lazy { com.app.adventofcode.year21.Day01(this) },
-        2 to lazy { com.app.adventofcode.year21.Day02(this) },
-        3 to lazy { com.app.adventofcode.year21.Day03(this) },
-        4 to lazy { com.app.adventofcode.year21.Day04(this) },
-        5 to lazy { com.app.adventofcode.year21.Day05(this) },
-        6 to lazy { com.app.adventofcode.year21.Day06(this) }/*,
-        7 to lazy { com.app.adventofcode.year21.Day07(this) },
-        8 to lazy { com.app.adventofcode.year21.Day08(this) },
-        9 to lazy { com.app.adventofcode.year21.Day09(this) },
-        10 to lazy { com.app.adventofcode.year21.Day10(this) },
-        11 to lazy { com.app.adventofcode.year21.Day11(this) },
-        12 to lazy { com.app.adventofcode.year21.Day12(this) },
-        13 to lazy { com.app.adventofcode.year21.Day13(this) },
-        14 to lazy { com.app.adventofcode.year21.Day14(this) }*/
-    )
-
-    var arrayListYear = arrayListOf(2015, 2016, 2017, 2018, 2019, 2020, 2021)
-    var arrayListDay = arrayListOf(
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        8,
-        9,
-        10,
-        11,
-        12,
-        13,
-        14,
-        15,
-        16,
-        17,
-        18,
-        19,
-        20,
-        21,
-        22,
-        23,
-        24,
-        25,
-        26,
-        27,
-        28,
-        29,
-        30
-    )
-    var selectYear = 0
-    var selectDay = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -178,6 +70,8 @@ private val TAG="MainActivity"
                 }
             }
         }
+        binding.day.setSelection(0)
+        binding.year.setSelection(1)
     }
 
 
@@ -190,6 +84,7 @@ private val TAG="MainActivity"
             2019 -> callDay2019(day)
             2020 -> callDay2020(day)
             2021 -> callDay2021(day)
+            2022 -> callDay2022(day)
         }
     }
 
@@ -201,7 +96,10 @@ private val TAG="MainActivity"
     }
 
     private fun callDay2016(day: Int) {
-
+        val dayans = year16[day]
+        binding.answerPartOne.text = dayans?.value?.partOne().toString()
+        binding.answerPartTwo.text = dayans?.value?.partTwo().toString()
+        Log.d(TAG, "callDay2016: "+binding.answerPartTwo.text)
     }
 
     private fun callDay2017(day: Int) {
@@ -225,6 +123,14 @@ private val TAG="MainActivity"
 
     private fun callDay2021(day: Int) {
         val dayans = year21[day]
+        binding.answerPartOne.text = dayans?.value?.partOne().toString()
+        binding.answerPartTwo.text = dayans?.value?.partTwo().toString()
+        Log.d(TAG, "callDay2021: "+binding.answerPartTwo.text)
+
+    }
+
+    private fun callDay2022(day: Int) {
+        val dayans = year22[day]
         binding.answerPartOne.text = dayans?.value?.partOne().toString()
         binding.answerPartTwo.text = dayans?.value?.partTwo().toString()
         Log.d(TAG, "callDay2021: "+binding.answerPartTwo.text)

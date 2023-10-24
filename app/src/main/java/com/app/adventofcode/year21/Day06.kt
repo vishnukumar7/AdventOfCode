@@ -22,7 +22,7 @@ class Day06(context: Context): Day(context,6,2021) {
     }
 
     private fun reduceTo(baseItem: LongArray): LongArray {
-      /*  val newBaseItem = LongArray(8){0}
+        /*val newBaseItem = LongArray(8){0}
             for (x in baseItem.indices) {
                 if (x == 0) {
                     newBaseItem[6] += baseItem[x]
@@ -31,10 +31,10 @@ class Day06(context: Context): Day(context,6,2021) {
                     newBaseItem[x - 1] += baseItem[x]
                 }
             }
-        val temp=baseItem.first()*/
-        newBaseItem=baseItem.copyOfRange(1,8)
+        val temp=baseItem.first()
+        newBaseItem=baseItem.copyOfRange(1,8)*/
 
-            return newBaseItem
+            return baseItem.copyOfRange(1,8)
 
     }
 
